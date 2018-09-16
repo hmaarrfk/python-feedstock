@@ -52,7 +52,7 @@ source:
     sha256: de3c87b26a80e789986d8e6950c6304175d3829afe9c6c7211eb7257266ab0ac         # [win]
 
 build:
-  number: 0
+  number: 1
   # Windows has issues updating python if conda is using files itself.
   # Copy rather than link.
   no_link:
@@ -78,6 +78,7 @@ requirements:
     - tk                                 # [unix]
     - ncurses                            # [unix]
     - libffi                             # [unix]
+    - gdbm                               # [unix]
   run:
     - bzip2                              # [unix]
     - sqlite                             # [unix]
@@ -90,6 +91,10 @@ requirements:
     - libffi                             # [unix]
 
 test:
+  requires:
+    - gdbm
+  imports:
+    - dbm.gnu
   commands:
     - python -V
     - python3 -V            # [unix]
