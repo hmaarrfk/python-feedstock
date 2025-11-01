@@ -1,0 +1,39 @@
+From f9b55826fbe92952bddf222d2b92a9dbb61011ff Mon Sep 17 00:00:00 2001
+From: Mark Harfouche <mark.harfouche@gmail.com>
+Date: Sat, 1 Nov 2025 13:58:26 -0400
+Subject: [PATCH] Patch out zlib.h headers
+
+---
+ Modules/binascii.c   | 2 +-
+ Modules/zlibmodule.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Modules/binascii.c b/Modules/binascii.c
+index 6bb01d1..3db69c2 100644
+--- a/Modules/binascii.c
++++ b/Modules/binascii.c
+@@ -61,7 +61,7 @@
+ #include "pycore_long.h"          // _PyLong_DigitValue
+ #include "pycore_strhex.h"        // _Py_strhex_bytes_with_sep()
+ #ifdef USE_ZLIB_CRC32
+-#  include "zlib.h"
++#  include "zlib-ng.h"
+ #endif
+ 
+ typedef struct binascii_state {
+diff --git a/Modules/zlibmodule.c b/Modules/zlibmodule.c
+index cb360f2..b5260ce 100644
+--- a/Modules/zlibmodule.c
++++ b/Modules/zlibmodule.c
+@@ -9,7 +9,7 @@
+ 
+ #include "Python.h"
+ 
+-#include "zlib.h"
++#include "zlib-ng.h"
+ #include "stdbool.h"
+ #include <stddef.h>               // offsetof()
+ 
+-- 
+2.51.0
+
