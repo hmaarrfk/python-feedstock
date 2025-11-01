@@ -168,7 +168,7 @@ outputs:
         - bzip2          # [build_platform != target_platform]
         - libsqlite      # [build_platform != target_platform]
         - liblzma-devel  # [build_platform != target_platform]
-        - zlib           # [build_platform != target_platform]
+        - zlib-ng        # [build_platform != target_platform]
         - zstd           # [build_platform != target_platform]
         - openssl        # [build_platform != target_platform]
         - readline       # [not win and build_platform != target_platform]
@@ -182,7 +182,7 @@ outputs:
         - bzip2
         - libsqlite
         - liblzma-devel
-        - zlib
+        - zlib-ng
         - zstd
         - openssl
         - readline  # [not win]
