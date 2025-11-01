@@ -11,6 +11,17 @@ if [[ ! -d ${SRC_DIR}/python-bin ]]; then
   export PATH=${SRC_DIR}/python-bin/bin:${PATH}
 fi
 
+# tcl/tk seem to add a dependency against zlib
+# but they actually do not appear in the header files
+# so they aren't useful in the context off dynamic linking
+# https://github.com/conda-forge/tk-feedstock/pull/70
+sed -i '/^Requires\.private/d' ${PREFIX}/lib/pkgconfig/tcl.pc
+sed -i '/^Libs\.private/d' ${PREFIX}/lib/pkgconfig/tcl.pc
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
+  sed -i '/^Requires\.private/d' ${BUILD_PREFIX}/lib/pkgconfig/tcl.pc
+  sed -i '/^Libs\.private/d' ${BUILD_PREFIX}/lib/pkgconfig/tcl.pc
+fi
+
 # The LTO/PGO information was sourced from @pitrou and the Debian rules file in:
 # http://http.debian.net/debian/pool/main/p/python3.6/python3.6_3.6.2-2.debian.tar.xz
 # https://packages.debian.org/source/sid/python3.6
