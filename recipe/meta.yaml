@@ -65,7 +65,7 @@ source:
       - patches/0013-Unvendor-libffi.patch
       - patches/0014-Unvendor-tcltk.patch
       - patches/0015-unvendor-xz.patch
-      - patches/0016-unvendor-zlib.patch
+      - patches/0016-unvendor-zlib.patch  # [win]
       - patches/0017-Do-not-pass-g-to-GCC-when-not-Py_DEBUG.patch
       - patches/0018-Unvendor-expat.patch
       - patches/0019-Remove-unused-readelf.patch
