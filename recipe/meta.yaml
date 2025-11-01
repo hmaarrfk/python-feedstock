@@ -77,7 +77,7 @@ source:
 {% endif %}
       - patches/0024-Do-not-define-pid_t-as-it-might-conflict-with-the-ac.patch
       - patches/0025-Unvendor-zstd.patch
-      - patches/0026-Adjust-windows-project-for-zlib-ng.patch
+      - patches/0026-Adjust-windows-project-for-zlib-ng.patch  # [win]
       - patches/0027-Use-zlib-ng-on-unix-instead-of-zlib.patch
       - patches/0028-Update-usage-of-zlib-to-explicitely-use-zlib-ng.patch
 
