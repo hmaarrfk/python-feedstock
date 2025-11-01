@@ -24,7 +24,7 @@ VER=${PKG_VERSION%.*}
 VERNODOTS=${VER//./}
 TCLTK_VER=${tk}
 # Disables some PGO/LTO
-QUICK_BUILD=yes
+QUICK_BUILD=no
 
 _buildd_static=build-static
 _buildd_shared=build-shared
