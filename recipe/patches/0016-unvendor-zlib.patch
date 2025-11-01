@@ -1,23 +1,31 @@
-From aca0e2c3d51aaa449f7e849b7fbc26233d611298 Mon Sep 17 00:00:00 2001
-From: Isuru Fernando <isuruf@gmail.com>
-Date: Wed, 29 Sep 2021 15:21:55 -0700
-Subject: [PATCH 16/25] unvendor zlib
+From 0536f556de69eb3a87f3aa71624d3de791595818 Mon Sep 17 00:00:00 2001
+From: Mark Harfouche <mark.harfouche@gmail.com>
+Date: Sat, 1 Nov 2025 14:04:02 -0400
+Subject: [PATCH] unvendor zlib
 
+Originally by: Isuru Fernando <isuruf@gmail.com>
+Date: Wed, 29 Sep 2021 15:21:55 -0700
 ---
- PCbuild/pythoncore.vcxproj         | 14 ++-----
+ PCbuild/pythoncore.vcxproj         | 16 +++-----
  PCbuild/pythoncore.vcxproj.filters | 66 ------------------------------
- 2 files changed, 4 insertions(+), 76 deletions(-)
+ 2 files changed, 5 insertions(+), 77 deletions(-)
 
 diff --git a/PCbuild/pythoncore.vcxproj b/PCbuild/pythoncore.vcxproj
-index 8e45967a83c..fc1a6077b34 100644
+index 73f6a4b..4533437 100644
 --- a/PCbuild/pythoncore.vcxproj
 +++ b/PCbuild/pythoncore.vcxproj
+@@ -1,4 +1,4 @@
+-﻿<?xml version="1.0" encoding="utf-8"?>
++<?xml version="1.0" encoding="utf-8"?>
+ <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <ItemGroup Label="ProjectConfigurations">
+     <ProjectConfiguration Include="Debug|ARM">
 @@ -82,7 +82,7 @@
    <PropertyGroup>
      <KillPython>true</KillPython>
      <RequireProfileData>true</RequireProfileData>
--    <IncludeExternals Condition="$(IncludeExternals) == '' and Exists('$(zlibNgDir)\zlib-ng.h.in')">true</IncludeExternals>
-+    <IncludeExternals Condition="$(IncludeExternals) == '' and Exists('$(condaDir)\include\zlib.h')">true</IncludeExternals>
+-    <IncludeExternals Condition="$(IncludeExternals) == '' and Exists('$(zlibNgDir)\zlib-ng.h.in')">true</IncludeExternals>^M
++    <IncludeExternals Condition="$(IncludeExternals) == '' and Exists('$(condaDir)\include\zlib-ng.h')">true</IncludeExternals>^M
      <IncludeExternals Condition="$(IncludeExternals) == ''">false</IncludeExternals>
    </PropertyGroup>
    <ImportGroup Label="PropertySheets">
@@ -36,7 +44,7 @@ index 8e45967a83c..fc1a6077b34 100644
      <Link>
 -      <AdditionalDependencies>version.lib;ws2_32.lib;pathcch.lib;bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
 -      <AdditionalDependencies Condition="$(IncludeExternals)">zlib-ng$(PyDebugExt).lib;%(AdditionalDependencies)</AdditionalDependencies>
-+      <AdditionalDependencies>version.lib;ws2_32.lib;pathcch.lib;bcrypt.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
++      <AdditionalDependencies>version.lib;ws2_32.lib;pathcch.lib;bcrypt.lib;zlib-ng.lib;%(AdditionalDependencies)</AdditionalDependencies>
 +      <AdditionalLibraryDirectories>$(condaDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
      </Link>
    </ItemDefinitionGroup>
@@ -55,7 +63,7 @@ index 8e45967a83c..fc1a6077b34 100644
    <ImportGroup Label="ExtensionTargets">
      <Import Project="regen.targets" />
 diff --git a/PCbuild/pythoncore.vcxproj.filters b/PCbuild/pythoncore.vcxproj.filters
-index 0e6d42cc959..144a0e3425a 100644
+index 0e6d42c..144a0e3 100644
 --- a/PCbuild/pythoncore.vcxproj.filters
 +++ b/PCbuild/pythoncore.vcxproj.filters
 @@ -900,39 +900,6 @@
@@ -138,3 +146,6 @@ index 0e6d42cc959..144a0e3425a 100644
      <ClCompile Include="..\Python\hamt.c">
        <Filter>Python</Filter>
      </ClCompile>
+-- 
+2.51.0
+
