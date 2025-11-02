@@ -15,11 +15,15 @@ fi
 # but they actually do not appear in the header files
 # so they aren't useful in the context off dynamic linking
 # https://github.com/conda-forge/tk-feedstock/pull/70
-sed -i '/^Requires\.private/d' ${PREFIX}/lib/pkgconfig/tcl.pc
-sed -i '/^Libs\.private/d' ${PREFIX}/lib/pkgconfig/tcl.pc
+sed -i.bak '/^Requires\.private/d' ${PREFIX}/lib/pkgconfig/tcl.pc
+rm -f ${PREFIX}/lib/pkgconfig/tcl.pc.bak
+sed -i.bak '/^Libs\.private/d' ${PREFIX}/lib/pkgconfig/tcl.pc
+rm -f ${PREFIX}/lib/pkgconfig/tcl.pc.bak
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
-  sed -i '/^Requires\.private/d' ${BUILD_PREFIX}/lib/pkgconfig/tcl.pc
-  sed -i '/^Libs\.private/d' ${BUILD_PREFIX}/lib/pkgconfig/tcl.pc
+  sed -i.bak '/^Requires\.private/d' ${BUILD_PREFIX}/lib/pkgconfig/tcl.pc
+  rm -f ${CONDA_PREFIX}/lib/pkgconfig/tcl.pc.bak
+  sed -i.bak '/^Libs\.private/d' ${BUILD_PREFIX}/lib/pkgconfig/tcl.pc
+  rm -f ${CONDA_PREFIX}/lib/pkgconfig/tcl.pc.bak
 fi
 
 # The LTO/PGO information was sourced from @pitrou and the Debian rules file in:
