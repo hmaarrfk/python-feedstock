@@ -313,7 +313,7 @@ outputs:
       string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}{{ debug }}_{{ abi_tag }}
       run_exports:
         weak:
-          - {{ pin_subpackage("libpython", max_pin=None) }}
+          - {{ pin_subpackage("libpython", min_pin="x.x", max_pin="x") }}
     requirements:
       build:
         - {{ compiler('c') }}
