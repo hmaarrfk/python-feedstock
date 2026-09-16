@@ -311,8 +311,8 @@ outputs:
         - PY_INTERP_DEBUG={{ py_interp_debug }}
         - PY_FREETHREADING={{ freethreading }}
       string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}{{ debug }}_{{ abi_tag }}
-      run_exports:
-        weak:
+      run_exports:                                                           # [unix]
+        weak:                                                                # [unix]
           - {{ pin_subpackage("libpython", min_pin="x.x", max_pin="x") }}    # [unix]
     requirements:
       build:
